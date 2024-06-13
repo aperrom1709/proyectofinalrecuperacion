@@ -1,5 +1,6 @@
 package Ui.panels;
 
+import Model.Classes.User;
 import Services.UserServices;
 import Ui.frames.FrameLogin;
 
@@ -12,6 +13,7 @@ import java.awt.event.MouseListener;
 
 public class PanelBaja extends JPanel {
     JTextField idUser;
+    String id;
 
     JTextField pass;
     JTextField correo;
@@ -35,13 +37,18 @@ public class PanelBaja extends JPanel {
     private MouseListener listenerMouseOP = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (!serviceUser.bajausuario(idUser.getText())) {
-                System.out.println("se ha borrado");
+            //if(serviceUser.userExists(id)){
+                //User user =new User(idUser.getText(),"","",false);
+                //idUser.setText(serviceUser.userExists(id));
+                if (!serviceUser.bajausuario(idUser.getText())) {
+                    System.out.println("se ha borrado");
 
 
 
-                cargarpanelop();
-            }
+                    cargarpanelop();
+                }
+            //}
+
 
 
         }
@@ -68,15 +75,16 @@ public class PanelBaja extends JPanel {
         Consultar.setSize(new Dimension(152,32));
         Consultar.setBackground(new Color(0xEA8484));
         this.add(Consultar);
+        Consultar.addMouseListener(listenerMouseOP);
 
 
 
-        JLabel idusuario =new JLabel("IdUsuario:");
+        JLabel idusuario =new JLabel("IdUsuario: ");
         idusuario.setLocation(new Point(200,150));
         idusuario.setSize(new Dimension(152,32));
         // usuario.setFont(new Font("Consolas", Font.BOLD, 22));
         this.add(idusuario);
-        idUser = new JTextField("");
+        idUser = new JTextField(" ");
         idUser.setLocation(new Point(260,150));
         idUser.setSize(new Dimension(152,32));
         this.add(idUser);
@@ -85,12 +93,12 @@ public class PanelBaja extends JPanel {
         correos.setLocation(new Point(200,200));
         correos.setSize(new Dimension(152,32));
         this.add(correos);
-        correo=new JTextField("");
+        correo=new JTextField(" ");
         correo.setLocation(new Point(260,200));
         correo.setSize(new Dimension(152,32));
         this.add(correo);
 
-        JLabel passwd = new JLabel("Passwd:");
+        JLabel passwd = new JLabel("Passwd: ");
         passwd.setLocation(new Point(200,250));
         passwd.setSize(new Dimension(152,32));
         this.add(passwd);
@@ -100,7 +108,7 @@ public class PanelBaja extends JPanel {
         pass.setSize(new Dimension(152,32));
         this.add(pass);
 
-        JLabel Isadmin=new JLabel("IsAdmin:");
+        JLabel Isadmin=new JLabel("IsAdmin: ");
         Isadmin.setLocation(new Point(200,350));
         Isadmin.setSize(new Dimension(152,32));
         this.add(Isadmin);
